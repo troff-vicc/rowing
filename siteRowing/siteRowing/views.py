@@ -10,6 +10,7 @@ def index(request):
         form = NameForm(request.POST)
         if form.is_valid():
             sportsmanName = form.cleaned_data['sportsmanName']
+            sportsmanName = (sportsmanName.title()).strip()
             accuracy, _ = logic.sporsmen_data(sportsmanName)
             if accuracy:
                 return HttpResponseRedirect('find_name')
@@ -38,37 +39,45 @@ def search_sportsman(request):
             minList200.append(float(minList[0][:str(minList[0]).find(':')])*60 +
                                float(minList[0][str(minList[0]).find(':')+1:])
                                if str(minList[0]).find(':') != -1 else float(minList[0]))
+    if len(minList200) == 0:
+        min200 = "Недостаточно данных"
+    else:
+        min200 = str(int(min(minList200)//60)) + ':' \
+                 + str(round(min(minList200)%60, 3)) \
+            if min(minList200)%60 > 9 \
+            else (str(int(min(minList200)//60)) + ':' + '0' +
+                  str(round(min(minList200)%60, 3)))
+        if min200[0] == '0':
+            min200 = min200[2:]
     minList500 = []
     for minList in list500:
         if minList[0] != 'не финишировал' and minList[0] != 'не стартовали' and minList[0] != 'дисквалифицирован':
             minList500.append((float(minList[0][:str(minList[0]).find(':')])*60 +
                                float(minList[0][str(minList[0]).find(':')+1:]))
                               if str(minList[0]).find(':') != -1 else float(minList[0]))
+    if len(minList500) == 0:
+        min500 = "Недостаточно данных"
+    else:
+        min500 = (str(int(min(minList500)//60)) + ':' +
+                  str(round(min(minList500)%60, 3))) \
+            if min(minList500)%60 > 9 \
+            else (str(int(min(minList500)//60)) + ':' +
+                  '0' + str(round(min(minList500)%60, 3)))
     minList1000 = []
     for minList in list1000:
         if minList[0] != 'не финишировал' and minList[0] != 'не стартовали' and minList[0] != 'дисквалифицирован':
             minList1000.append((float(minList[0][:str(minList[0]).find(':')])*60 +
                                float(minList[0][str(minList[0]).find(':')+1:]))
                                if str(minList[0]).find(':') != -1 else float(minList[0]))
-    min200 = str(int(min(minList200)//60)) + ':' \
-             + str(round(min(minList200)%60, 3))\
-        if min(minList200)%60 > 9 \
-        else (str(int(min(minList200)//60)) + ':' + '0' +
-              str(round(min(minList200)%60, 3)))
-    if min200[0] == '0':
-        min200 = min200[2:]
-    min500 = (str(int(min(minList500)//60)) + ':' +
-              str(round(min(minList500)%60, 3)))\
-        if min(minList500)%60 > 9 \
-        else (str(int(min(minList500)//60)) + ':' +
-              '0' + str(round(min(minList500)%60, 3)))
-    min1000 =str(int(min(minList1000)//60)) + ':' +\
-             str(round(min(minList1000)%60, 3))\
-        if min(minList1000)%60 > 9 \
-        else (str(int(min(minList1000)//60)) + ':' +
-              '0' + str(round(min(minList1000)%60, 3)))
-    lenTable = 35 * (len(list200) + len(list500) + len(list1000) + 1) + 58
+    if len(minList1000) == 0:
+        min1000 = "Недостаточно данных"
+    else:
+        min1000 =str(int(min(minList1000)//60)) + ':' + \
+                 str(round(min(minList1000)%60, 3)) \
+            if min(minList1000)%60 > 9 \
+            else (str(int(min(minList1000)//60)) + ':' +
+                  '0' + str(round(min(minList1000)%60, 3)))
     return render(request, 'search_sportsman.html', {'twoHundredList': list200, 'fiveHundredList': list500,
-                                                     'thousandList': list1000, 'lenTable': lenTable,
+                                                     'thousandList': list1000,
                                                      'sportsmanName': sportsmanName, 'min200': min200,
                                                      'min500': min500, 'min1000': min1000})
