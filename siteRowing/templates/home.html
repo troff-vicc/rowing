@@ -1,16 +1,15 @@
-{% load staticfiles %}
+{% load static %}
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Гребля</title>
-    <link rel="stylesheet" href="{% static 'css/homeStyle'%}">
+    <link rel="stylesheet" href="{% static 'css/homeStyle.css'%}">
 </head>
 <body>
 <header class="header">
-    <div id="home">
     <a id="url" href="/">Home</a>
-</div>
 </header>
+
 <form method="post" id="inputForm">
     {% csrf_token %}
     {{ form }}
