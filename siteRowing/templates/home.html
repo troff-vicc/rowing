@@ -1,77 +1,23 @@
-<!DOCTYPE html>
+{% load staticfiles %}
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Гребля</title>
+    <link rel="stylesheet" href="{% static 'css/homeStyle'%}">
 </head>
 <body>
+<header class="header">
+    <div id="home">
+    <a id="url" href="/">Home</a>
+</div>
+</header>
 <form method="post" id="inputForm">
     {% csrf_token %}
     {{ form }}
     <input type="submit" id="button">
 </form>
 {% if accuracy %}
-    <b id="fail" align="center">Данного спортсмена несуществует</b>
+    <b id="fail">Данного спортсмена не существует</b>
 {% endif %}
-<div id="home">
-    <a id="url" href="/">Home</a>
-</div>
-<style>
-#id_sportsmanName{
-    position: absolute;
-    left: -275px;
-    width: 500px;
-    height: 46px;
-    border-radius: 10px 0 0 10px;
-    border: 1px solid;
-    font: 400 25px Courier New;
-}
-#button {
-    position: absolute;
-    left: 225px;
-    border: 1px solid;
-    border-radius: 0 10px 10px 0;
-    height: 50px;
-}
-#button::before {
-    content: "\2a"
-}
-#inputForm {
-    position: absolute;
-    top: 100px;
-    left: 50%;
-}
-#url:link {
-    color: #000000;
-    background-color: transparent;
-    text-decoration: none;
-}
-#url {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    color: #000000;
-    font: 400 35px Arial;
-    font-weight: 600;
-}
-#home{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    background-color: #bcbcbc;
-    height: 50px;
-}
-#fail {
-    position: absolute;
-    top: 170px;
-    font: 400 25px Courier New;
-    left: 450px;
-    border: 1px solid grey;
-    border-radius: 10px;
-    width: 500px;
-    height: 30px;
-}
-</style>
 </body>
 </html>

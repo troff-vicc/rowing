@@ -1,31 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Спортсмен</title>
+     <link rel="stylesheet" href="{% static 'css/searchStyle'%}">
 </head>
 <body>
 <table cellpadding=7>
     <tr>
-    <th colspan="3" style="font-size: 25px">Время на соревнованиях</th>
+    <th colspan="3" class="timeOnOlimp">Время на соревнованиях</th>
     </tr>
     <tr>
-        <td align="center">
+        <td class="distance">
             Дистанция
         </td>
-        <td align="center">
+        <td class="time">
             Время
         </td>
-        <td align="center">
+        <td class="date">
             Дата
         </td>
         {% for twoHundred in twoHundredList %}
     <tr>
-        <td align="center">
+        <td class="twoHundred">
             200
         </td>
         {% for twoHundredEl in twoHundred %}
-        <td align="center">
+        <td class="twoHundredEl">
             {{twoHundredEl}}
         </td>
         {% endfor %}
@@ -33,11 +35,11 @@
     {% endfor %}
     {% for fiveHundred in fiveHundredList %}
     <tr>
-        <td align="center">
+        <td class="fiveHundred">
             500
         </td>
         {% for fiveHundredEl in fiveHundred %}
-        <td align="center">
+        <td class="fiveHundredEL">
             {{fiveHundredEl}}
         </td>
         {% endfor %}
@@ -45,11 +47,11 @@
     {% endfor %}
     {% for thousand in thousandList %}
     <tr>
-        <td align="center">
+        <td class="thousand">
             1000
         </td>
         {% for thousandEl in thousand %}
-        <td align="center">
+        <td class="thousandEL">
             {{thousandEl}}
         </td>
         {% endfor %}
@@ -63,62 +65,5 @@
 <b id="tm">Лучшее время на 200м : {{min200}}</b>
 <b id="fm">Лучшее время на 500м : {{min500}}</b>
 <b id="om">Лучшее время на 1000м : {{min1000}}</b>
-<style>
-#url:link {
-    color: #000000;
-    background-color: transparent;
-    text-decoration: none;
-}
-#url {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    color: #000000;
-    font: 400 35px Arial;
-    font-weight: 600;
-}
-#home{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    background-color: #bcbcbc;
-    height: 50px;
-}
-td {
-   border: 1px solid grey;
-   font-size: 17px;
-}
-table {
-    position: absolute;
-    border-collapse: collapse;
-    right: 20px;
-    width: 330px;
-    top: 50px;
-}
-#tm {
-    font: 400 20px system-ui;
-    position: absolute;
-    top: 115px;
-    left: 20px;
-}
-#fm {
-    font: 400 20px system-ui;
-    position: absolute;
-    top: 150px;
-    left: 20px;
-}
-#om {
-    font: 400 20px system-ui;
-    position: absolute;
-    top: 185px;
-    left: 20px;
-}
-#name {
-    position: absolute;
-    left: 80px;
-    top: 50px;
-}
-</style>
 </body>
 </html>

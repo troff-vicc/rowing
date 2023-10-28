@@ -1,0 +1,61 @@
+.timeOnOlimp {
+     font-size: 25px;
+}
+ .thousandEL, .thousand, .fiveHundredEL, .fiveHundred, .twoHundredEl, .twoHundred, .distance, .time, .date{
+     text-align: center;
+ }
+#url:link {
+    color: #000000;
+    background-color: transparent;
+    text-decoration: none;
+}
+#url {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: #000000;
+    font: 400 35px Arial;
+    font-weight: 600;
+}
+#home{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #bcbcbc;
+    height: 50px;
+}
+td {
+   border: 1px solid grey;
+   font-size: 17px;
+}
+table {
+    position: absolute;
+    border-collapse: collapse;
+    right: 20px;
+    width: 330px;
+    top: 50px;
+}
+#tm {
+    font: 400 20px system-ui;
+    position: absolute;
+    top: 115px;
+    left: 20px;
+}
+#fm {
+    font: 400 20px system-ui;
+    position: absolute;
+    top: 150px;
+    left: 20px;
+}
+#om {
+    font: 400 20px system-ui;
+    position: absolute;
+    top: 185px;
+    left: 20px;
+}
+#name {
+    position: absolute;
+    left: 80px;
+    top: 50px;
+}
