@@ -7,8 +7,8 @@ def rename(name, v = True):
         newName = name[:name.find(',')] + ' ' + name[name.find(',') + 2:]
     return newName
 def sporsmen_data(name):
-    name = rename(name)
-    con = sqlite3.connect('rowing.db')
+    name = name[:name.find(' ')] + ',' + name[name.find(' '):]
+    con = sqlite3.connect('../rowing.db')
     cur = con.cursor()
     cur.execute(f'''SELECT * from rowingFor1 WHERE sportsman = "{name}" ''')
     row = cur.fetchall()
