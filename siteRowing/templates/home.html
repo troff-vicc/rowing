@@ -1,22 +1,25 @@
 {% load static %}
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Гребля</title>
-    <link rel="stylesheet" href="{% static 'css/homeStyle.css'%}">
-</head>
-<body>
-<header class="header">
-    <a id="url" href="/">Home</a>
-</header>
+    <head>
+        <meta charset="UTF-8">
+        <title>Гребля</title>
+        <link rel="stylesheet" href="{% static 'css/homeStyle.css'%}">
+    </head>
+    <body>
+        <header class="header">
+            <a class="url" href="/"><p class="home">Home</p></a>
+        </header>
+        <main class="main">
 
-<form method="post" id="inputForm">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" id="button">
-</form>
-{% if accuracy %}
-    <b id="fail">Данного спортсмена не существует</b>
-{% endif %}
-</body>
+                <form method="post" class="input">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" class="button">
+                </form>
+
+            {% if accuracy %}
+            <p class="failP"> ! <b class="failB">Данного спортсмена не существует</b></p>
+            {% endif %}
+        </main>
+    </body>
 </html>

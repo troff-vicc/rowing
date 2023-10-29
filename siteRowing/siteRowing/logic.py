@@ -3,7 +3,7 @@ import sqlite3
 
 def sporsmen_data(name):
     name = name[:name.find(' ')] + ',' + name[name.find(' '):]
-    con = sqlite3.connect('../rowing.db')
+    con = sqlite3.connect('rowing.db')
     cur = con.cursor()
     cur.execute(f'''SELECT * from rowingFor1 WHERE sportsman = "{name}" ''')
     row = cur.fetchall()
