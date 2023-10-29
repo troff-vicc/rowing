@@ -4,7 +4,6 @@ from . import logic
 from django.http import HttpResponseRedirect
 
 def index(request):
-    global sportsmanName
     dictionary = {}
     if request.method == 'POST':
         form = NameForm(request.POST)
@@ -13,7 +12,10 @@ def index(request):
             sportsmanName = (sportsmanName.title()).strip()
             accuracy, _ = logic.sporsmen_data(sportsmanName)
             if accuracy:
-                return HttpResponseRedirect('find_name')
+                id = logic.nameID(sportsmanName)
+                out = HttpResponseRedirect('find_name')
+                out.set_cookie('sportsmanID', id, max_age=60*60)
+                return out
             else:
                 dictionary['accuracy'] = True
     else:
@@ -21,18 +23,19 @@ def index(request):
     dictionary['form'] = form
     return render(request, 'home.html', dictionary)
 def search_sportsman(request):
-    global sportsmanName
+    sportsmanID = request.COOKIES["sportsmanID"]
+    sportsmanName = logic.idName(sportsmanID)
     _, sportsmanList = logic.sporsmen_data(sportsmanName)
     list200 = []
     list500 = []
     list1000 = []
     for sportsman in sportsmanList:
         if sportsman[4] == '200':
-            list200.append([sportsman[-1], sportsman[5]])
+            list200.append([sportsman[-2], sportsman[5]])
         elif sportsman[4] == '500':
-            list500.append([sportsman[-1], sportsman[5]])
+            list500.append([sportsman[-2], sportsman[5]])
         else:
-            list1000.append([sportsman[-1], sportsman[5]])
+            list1000.append([sportsman[-2], sportsman[5]])
     minList200 = []
     for minList in list200:
         if minList[0] != 'не финишировал' and minList[0] != 'не стартовали' and minList[0] != 'дисквалифицирован':
