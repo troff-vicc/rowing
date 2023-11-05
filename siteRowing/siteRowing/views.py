@@ -22,6 +22,11 @@ def index(request):
         form = NameForm()
     dictionary['form'] = form
     return render(request, 'home.html', dictionary)
+def race(request):
+    idRace = request.GET.get('raceID')
+    raceData = logic.race_data(idRace)
+    print(raceData[0])
+    return render (request, 'race.html', {'raceData': raceData})
 def search_sportsman(request):
     sportsmanID = request.COOKIES["sportsmanID"]
     sportsmanName = logic.idName(sportsmanID)
