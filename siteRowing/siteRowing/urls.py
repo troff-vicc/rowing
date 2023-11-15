@@ -23,5 +23,6 @@ urlpatterns = [
     path("", views.index),
     path("find_name", views.search_sportsman),
     path("race", views.race),
+    path("all_sportsman", views.listSportsman),
     path('admin/', admin.site.urls),
 ]

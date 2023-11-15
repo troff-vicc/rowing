@@ -33,10 +33,15 @@ def idName(id):
     name = cur.fetchall()[0][0]
     name = rename(name, False)
     return name
-
 def race_data(id):
     con = sqlite3.connect ('rowing.db')
-    cur = con.cursor ()
-    cur.execute (f'''SELECT * from rowingFor1 WHERE raceID = "{id}" ''')
-    race = cur.fetchall ()
+    cur = con.cursor()
+    cur.execute(f'''SELECT * from rowingFor1 WHERE raceID = "{id}" ''')
+    race = cur.fetchall()
     return race
+def listSportsman(count):
+    con = sqlite3.connect ('rowing.db')
+    cur = con.cursor()
+    cur.execute(f'''SELECT * from rowingSportsman''')
+    listSportsmanName = cur.fetchall()[10*(count-1):10*count]
+    return listSportsmanName

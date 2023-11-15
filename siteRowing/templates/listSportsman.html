@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<table cellpadding=7>
+    <tr>
+    <th colspan="3" class="timeOnOlimp">Время на соревнованиях</th>
+    </tr>
+    <tr>
+    <td>
+        Место
+    </td>
+    <td>
+        Спортсмен
+    </td>
+    <td>
+        Время
+    </td>
+    </tr>
+    {% for sportsman in listSportsman %}
+    <tr>
+    <td>
+        {{sportsman.0}}
+    </td>
+    <td>
+        {{sportsman.2}}
+    </td>
+    <td>
+        {{sportsman.3}}
+    </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
+</html>

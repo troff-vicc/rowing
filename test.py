@@ -1,5 +1,8 @@
 import sqlite3
-import matplotlib.pyplot as plt
-name = input()
-newName = name[:name.find(',')] + ' ' + name[name.find(',') + 2:]
-print(newName)
+con = sqlite3.connect('rowing.db')
+cur = con.cursor()
+cur.execute(f'''SELECT * from rowingSportsman WHERE sportsman = "Тонких, Никита"''')
+all = cur.fetchall()
+print(all)
+con.commit()
+

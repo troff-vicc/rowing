@@ -13,8 +13,7 @@ def index(request):
             accuracy, _ = logic.sporsmen_data(sportsmanName)
             if accuracy:
                 id = logic.nameID(sportsmanName)
-                out = HttpResponseRedirect('find_name')
-                out.set_cookie('sportsmanID', id, max_age=60*60)
+                out = HttpResponseRedirect(f'find_name?sportsmanID={id}')
                 return out
             else:
                 dictionary['accuracy'] = True
@@ -25,10 +24,9 @@ def index(request):
 def race(request):
     idRace = request.GET.get('raceID')
     raceData = logic.race_data(idRace)
-    print(raceData[0])
-    return render (request, 'race.html', {'raceData': raceData})
+    return render(request, 'race.html', {'raceData': raceData})
 def search_sportsman(request):
-    sportsmanID = request.COOKIES["sportsmanID"]
+    sportsmanID = request.GET.get("sportsmanID")
     sportsmanName = logic.idName(sportsmanID)
     _, sportsmanList = logic.sporsmen_data(sportsmanName)
     list200 = []
@@ -89,3 +87,7 @@ def search_sportsman(request):
                                                      'thousandList': list1000,
                                                      'sportsmanName': sportsmanName, 'min200': min200,
                                                      'min500': min500, 'min1000': min1000})
+def listSportsman(request):
+    idList = int(request.GET.get('idList'))
+    listSportsman = logic.listSportsman(idList)
+    return render(request, 'listSportsman.html', {'listSportsman': listSportsman})
